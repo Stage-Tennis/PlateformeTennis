@@ -63,7 +63,7 @@ class Planning
         return $this->start_time;
     }
 
-    public function setStart(\DateTimeInterface $start): static
+    public function setStartTime(\DateTimeInterface $start): static
     {
         $this->start_time = $start;
 
