@@ -1,20 +1,44 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello PanelController!{% endblock %}
+{% block title %}Hello PanelController!
+{% endblock %}
 
 {% block body %}
-<style>
-    .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
-    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
-</style>
+	<div class="container mx-auto p-4">
+		<div class="bg-white shadow-lg rounded-lg p-6 mb-4">
+			<h1 class="text-2xl font-semibold text-gray-700">Panneau Utilisateur</h1>
+		</div>
 
-<div class="example-wrapper">
-    <h1>Hello {{ controller_name }}! ✅</h1>
-
-    This friendly message is coming from:
-    <ul>
-        <li>Your controller at <code><a href="{{ '/home/quentin/PlateformeTennis/src/Controller/PanelController.php'|file_link(0) }}">src/Controller/PanelController.php</a></code></li>
-        <li>Your template at <code><a href="{{ '/home/quentin/PlateformeTennis/templates/panel/index.html.twig'|file_link(0) }}">templates/panel/index.html.twig</a></code></li>
-    </ul>
-</div>
-{% endblock %}
+		<div class="bg-white shadow-lg rounded-lg p-6">
+			<h2 class="text-xl font-semibold text-gray-600 mb-4">Mes informations</h2>
+			<form>
+				<ul class="grid grid-cols-2 gap-4 w-auto">
+					<li class="text-gray-700">Nom :
+						<input class="text-gray-600" type="text" name="name" value="{{ app.user.name }}">
+					</li>
+					<li class="text-gray-700">Prénom :
+						<input class="text-gray-600" type="text" name="surname" value="{{ app.user.surname }}">
+					</li>
+					<li class="text-gray-700">Date d'anniversaire :
+						<input class="text-gray-600" type="date" name="birthdate" value="{{ app.user.birthdate|date("Y-m-d") }}">
+					</li>
+					<li class="text-gray-700">Adresse mail :
+						<input class="text-gray-600 " type="email" name="email" value="{{ app.user.email }}">
+					</li>
+					<li class="text-gray-700">Numéro de téléphone :
+						<input class="text-gray-600" type="tel" name="phone" value="{{ app.user.phone }}">
+					</li>
+					<li class="text-gray-700">Adresse :
+						<input class="text-gray-600 w-auto" name="address" value="{{ app.user.address }}">
+					</li>
+					<li class="text-gray-700">Code postal :
+						<input class="text-gray-600" type="text" name="zipcode" value="{{ app.user.zipcode }}">
+					</li>
+					<li class="text-gray-700">Ville :
+						<input class="text-gray-600" type="text" name="city" value="{{ app.user.city }}">
+					</li>
+				</ul>
+				<input type="submit" class="mt-4 px-4 py-2 bg-orange-600 hover:bg-white hover:text-orange-600 rounded-md px-transition duration-300 ease-in-out" value="Valider les informations"></input>
+		</form>
+	</div>
+</div>{% endblock %}
