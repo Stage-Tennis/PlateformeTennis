@@ -13,7 +13,6 @@ use Symfony\Component\Security\Core\User\UserInterface;
 enum Roles: string
 {
     case ROLE_ADMIN = 'ROLE_ADMIN';
-    case ROLE_SUPERVISOR = 'ROLE_SUPERVISOR';
     case ROLE_TRAINER = 'ROLE_TRAINER';
     case ROLE_USER = 'ROLE_USER';
 }
