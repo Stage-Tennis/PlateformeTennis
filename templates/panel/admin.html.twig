@@ -1,20 +1,36 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello PanelController!{% endblock %}
+{% block title %}
+	Hello PanelController!
+{% endblock %}
+
+{% block javascripts %}
+	<script src="{{ asset('js/admin_panel.js') }}" defer></script>
+{% endblock %}
 
 {% block body %}
-<style>
-    .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
-    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
-</style>
+	<div class="container mx-auto">
+		<h1 class="text-center text-3xl mt-8 font-medium">
+			Panneau d'administration
+		</h1>
 
-<div class="example-wrapper">
-    <h1>Hello {{ controller_name }}! ✅</h1>
+		<h2 class="text-center text-xl mt-4 mb-4">
+			Bonjour
+			{{ app.user.name }}
+			{{ app.user.surname }}
+		</h2>
 
-    This friendly message is coming from:
-    <ul>
-        <li>Your controller at <code><a href="{{ '/home/quentin/PlateformeTennis/src/Controller/PanelController.php'|file_link(0) }}">src/Controller/PanelController.php</a></code></li>
-        <li>Your template at <code><a href="{{ '/home/quentin/PlateformeTennis/templates/panel/index.html.twig'|file_link(0) }}">templates/panel/index.html.twig</a></code></li>
-    </ul>
-</div>
+		<nav class="flex justify-center flex-row">
+			<a class="m-16 text-xl font-bold hover:text-orange-600 transition duration-300 ease-in-out" href="licensed">Licenciés</a>
+			<a class="m-16 text-xl font-bold hover:text-orange-600 transition duration-300 ease-in-out" href="planning">Planning</a>
+			<a class="m-16 text-xl font-bold hover:text-orange-600 transition duration-300 ease-in-out" href="staff">Staff</a>
+			<a class="m-16 text-xl font-bold hover:text-orange-600 transition duration-300 ease-in-out" href="others">Autres</a>
+		</nav>
+
+		<div id="subpage-container" class="flex flex-col justify-center"></div>
+
+		<hr class="my-4"/>
+	</div>
+
+
 {% endblock %}
