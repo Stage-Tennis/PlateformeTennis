@@ -19,7 +19,7 @@
   "scripts": {
     "dev-server": "encore dev-server",
     "dev": "encore dev",
-    "watch": "encore dev --watch & tailwindcss -i ./public/tailwind_input.css -o ./assets/styles/app.css --watch",
+    "watch": "tailwindcss -i ./public/tailwind_input.css -o ./assets/styles/app.css --watch & encore dev --watch",
     "build": "encore production --progress"
   }
 }
