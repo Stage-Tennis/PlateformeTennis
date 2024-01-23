@@ -1,24 +1,24 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <meta charset="UTF-8">
-        <title>
-            {% block title %}
-                Club Raquettes du Miosson - Le tennis, c'est pour toute la famille !
-            {% endblock %}
-        </title>
-        <link rel="icon" href="../public/images/cropped-Logo-RdM_2_site-1.jpg">
-        {% block stylesheets %}
-            <link rel="stylesheet" href="{{ asset('styles/app.css') }}"/>
-        {% endblock %}
+	<head>
+		<meta charset="UTF-8">
+		<title>
+			{% block title %}
+				Club Raquettes du Miosson - Le tennis, c'est pour toute la famille !
+			{% endblock %}
+		</title>
+		<link rel="icon" href="../public/images/cropped-Logo-RdM_2_site-1.jpg">
+		{% block stylesheets %}
+			{{ encore_entry_link_tags('app') }}
+		{% endblock %}
 
-        {% block javascripts %}
-        {% endblock %}
-        <script src={{asset('script.js')}} defer></script>
-    </head>
-    <body>
-        {% include "header.html.twig" %}
-        {% block body %}{% endblock %}
-        {% include "footer.html.twig" %}
-    </body>
+		{% block javascripts %}
+			{{ encore_entry_script_tags('app') }}
+		{% endblock %}
+	</head>
+	<body>
+		{% include "header.html.twig" %}
+		{% block body %}{% endblock %}
+		{% include "footer.html.twig" %}
+	</body>
 </html>
