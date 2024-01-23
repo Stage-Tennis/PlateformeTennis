@@ -1,0 +1,29 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello IndexController!
+{% endblock %}
+
+{% block body %}
+	<button>
+		<a href="{{ path('app_index') }}">Connexion</a>
+	</button>
+
+	<style>
+		.swiper {
+			width: 200px;
+			height: 200px;
+		}
+	</style>
+
+	<div class="swiper h-32 w-32 overflow-hidden">
+		<div class="swiper-wrapper">
+			<img class="swiper-slide object-cover" src="https://picsum.photos/200" alt="Slide 1">
+			<img class="swiper-slide object-cover" src="https://picsum.photos/100" alt="Slide 2">
+			<img class="swiper-slide object-cover" src="https://picsum.photos/300" alt="Slide 3">
+			<img class="swiper-slide object-cover" src="https://picsum.photos/400" alt="Slide 4">
+		</div>
+	</div>
+
+	<div class="swiper-next">Next</div>
+	<div class="swiper-prev">Prev</div>
+{% endblock %}
