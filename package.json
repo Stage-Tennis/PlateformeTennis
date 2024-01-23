@@ -9,6 +9,7 @@
     "@symfony/webpack-encore": "^4.0.0",
     "core-js": "^3.23.0",
     "regenerator-runtime": "^0.13.9",
+    "svelte": "^3.0 || ^4.0",
     "tailwindcss": "^3.4.1",
     "webpack": "^5.74.0",
     "webpack-cli": "^4.10.0",
@@ -21,5 +22,8 @@
     "dev": "encore dev",
     "watch": "tailwindcss -i ./public/tailwind_input.css -o ./assets/styles/app.css --watch & encore dev --watch",
     "build": "encore production --progress"
+  },
+  "dependencies": {
+    "swiper": "^11.0.5"
   }
 }
