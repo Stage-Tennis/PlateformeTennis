@@ -1,0 +1,75 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello ContactController!
+{% endblock %}
+
+{% block javascripts %}
+	{{ encore_entry_script_tags("contact") }}
+{% endblock %}
+
+
+{% block body %}
+	<div class="bg-gray-100">
+		<div class="container mx-auto px-4 flex items-center justify-center">
+			<div class="inline-block bg-white shadow-md rounded p-4 mt-4">
+				<div class="text-center">
+					<p>Courriel :
+						<a href="mailto:raquettesdumiosson@gmail.com" class="hover:text-orange-600 transition-transform duration-300">raquettesdumiosson@gmail.com</a>
+					</p>
+				</div>
+				<div class="pt-4 text-center">
+					<p>Siège social :</p>
+					<p>Mairie de Nieuil-l&rsquo;Espoir<br/>Place de l&rsquo;Église, 86340 Nieuil-l&rsquo;Espoir</p>
+				</div>
+				<div class="pt-4 text-center">
+					<a href="https://www.facebook.com/Raquettes-du-Miosson-103149561404585" class="inline-flex justify-center w-full text-orange-600">
+						<img src="/images/facebook-color-svgrepo-com.svg" class="flex justify-center items-center w-12 h-auto rounded hover:scale-110 transition-transform duration-300"/>
+					</a>
+				</div>
+			</div>
+		</div>
+
+		<div class="rounded px-8 pt-10 pb-8  max-w-4xl mx-auto">
+			<h2 class="block text-gray-800 text-xl font-bold mb-6">Laissez-nous un message !</h2>
+			<form action="{{ '/contact' }}" method="post">
+				<div class="flex mb-4 -mx-2">
+					<div class="w-1/2 px-2">
+						<label class="block text-gray-700 text-sm font-bold mb-2" for="firstname">
+							Nom
+							<span class="text-red-500">*</span>
+						</label>
+						<input class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="firstname" type="text" name="firstname" required>
+					</div>
+					<div class="w-1/2 px-2">
+						<label class="block text-gray-700 text-sm font-bold mb-2" for="lastname">
+							Prénom
+							<span class="text-red-500">*</span>
+						</label>
+						<input class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="lastname" type="text" name="lastname" required>
+					</div>
+				</div>
+				<div class="mb-4">
+					<label class="block text-gray-700 text-sm font-bold mb-2" for="email">
+						Email
+						<span class="text-red-500">*</span>
+					</label>
+					<input class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="email" type="email" name="email" required>
+				</div>
+				<div class="mb-6">
+					<label class="text-gray-700 text-sm font-bold mb-2 flex inline-bloc" for="message">
+						Message
+						<span class="text-red-500">*</span>
+						<span id="characterCount" class="text-gray-400 ml-4 opacity-50">0</span>
+						<p class="text-gray-400 opacity-50">/1024 caractères</p>
+					</label>
+					<textarea class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="message" name="message" rows="4" required></textarea>
+				</div>
+				<div class="flex items-center justify-end">
+					<button class="bg-orange-500 hover:bg-orange-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" type="submit">
+						Envoyer le message
+					</button>
+				</div>
+			</form>
+		</div>
+	</div>
+{% endblock %}
