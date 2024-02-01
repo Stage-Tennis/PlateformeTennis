@@ -18,42 +18,47 @@
 				</div>
 			{% else %}
 				<h2 class="flex items-center mt-4 md:mt-0 ml-auto">
-					Bonjour,
+					{% set currentHour = "now"|date("G") %}
+					{% if 6 <= currentHour and currentHour < 19 %}
+						Bonjour,
+					{% else %}
+						Bonsoir,
+					{% endif %}
 					{{ app.user.name }}
 					{{ app.user.surname }}
 				</h2>
+			</h2>
 
-				<div class="flex items-center mt-4 md:mt-0 ml-auto text-gray-800">
-					<a href="/panel" class=" hover:text-orange-600 transition underline duration-300 ease-in-out">Mon compte</a>
-				</div>
+			<div class="flex items-center mt-4 md:mt-0 ml-auto text-gray-800">
+				<a href="/panel" class=" hover:text-orange-600 transition underline duration-300 ease-in-out">Mon compte</a>
+			</div>
 
-				<div class="flex items-center mt-4 md:mt-0 ml-auto">
-					<a href="/logout" class=" hover:text-orange-600 transition underline duration-300 ease-in-out">Déconnexion</a>
-				</div>
-			{% endif %}
-		</div>
+			<div class="flex items-center mt-4 md:mt-0 ml-auto">
+				<a href="/logout" class=""><img src="images/logout-svgrepo-com.svg" class="w-10 h-auto hover:scale-110"></a>
+			</div>
+		{% endif %}
 	</div>
+</div>
 
-	<nav class="flex mt-4 md:mt-0">
-		<ul class="flex flex-col mx-auto md:flex-row items-center space-y-2 md:space-y-0 md:space-x-8 text-gray-800">
-			<li>
-				<a href="/" class="hover:text-orange-600 transition duration-300 ease-in-out">Accueil</a>
-			</li>
-			<li>
-				<a href="" class="hover:text-orange-600 transition duration-300 ease-in-out">Qui sommes nous ?</a>
-			</li>
-			<li>
-				<a href="" class="hover:text-orange-600 transition duration-300 ease-in-out">Inscriptions</a>
-			</li>
-			<li>
-				<a href="" class="hover:text-orange-600 transition duration-300 ease-in-out">Compétitions JEUNES</a>
-			</li>
-			<li>
-				<a href="" class="hover:text-orange-600 transition duration-300 ease-in-out">Partenaires</a>
-			</li>
-			<li>
-				<a href="/contact" class="hover:text-orange-600 transition duration-300 ease-in-out">Contact</a>
-			</li>
-		</ul>
-	</nav>
-</header>
+<nav class="flex mt-4 md:mt-0">
+	<ul class="flex flex-col mx-auto md:flex-row items-center space-y-2 md:space-y-0 md:space-x-8 text-gray-800">
+		<li>
+			<a href="/" class="hover:text-orange-600 transition duration-300 ease-in-out">Accueil</a>
+		</li>
+		<li>
+			<a href="/about" class="hover:text-orange-600 transition duration-300 ease-in-out">Qui sommes nous ?</a>
+		</li>
+		<li>
+			<a href="/adherer" class="hover:text-orange-600 transition duration-300 ease-in-out">Inscriptions</a>
+		</li>
+		<li>
+			<a href="" class="hover:text-orange-600 transition duration-300 ease-in-out">Compétitions JEUNES</a>
+		</li>
+		<li>
+			<a href="" class="hover:text-orange-600 transition duration-300 ease-in-out">Partenaires</a>
+		</li>
+		<li>
+			<a href="/contact" class="hover:text-orange-600 transition duration-300 ease-in-out">Contact</a>
+		</li>
+	</ul>
+</nav></header>
