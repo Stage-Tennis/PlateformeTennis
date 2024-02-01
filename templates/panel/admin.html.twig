@@ -4,33 +4,12 @@
 	Hello PanelController!
 {% endblock %}
 
-{% block javascripts %}
-	<script src="{{ asset('js/admin_panel.js') }}" defer></script>
-{% endblock %}
+{% block javascripts %}{% endblock %}
 
 {% block body %}
-	<div class="container mx-auto">
-		<h1 class="text-center text-3xl mt-8 font-medium">
-			Panneau d'administration
-		</h1>
+	{%block header %}{% endblock %}
 
-		<h2 class="text-center text-xl mt-4 mb-4">
-			Bonjour
-			{{ app.user.name }}
-			{{ app.user.surname }}
-		</h2>
+	<div {{ svelte_component("AdminPanel") }}></div>
 
-		<nav class="flex justify-center flex-row">
-			<a class="m-16 text-xl font-bold hover:text-orange-600 transition duration-300 ease-in-out" href="licensed">Licenciés</a>
-			<a class="m-16 text-xl font-bold hover:text-orange-600 transition duration-300 ease-in-out" href="planning">Planning</a>
-			<a class="m-16 text-xl font-bold hover:text-orange-600 transition duration-300 ease-in-out" href="staff">Staff</a>
-			<a class="m-16 text-xl font-bold hover:text-orange-600 transition duration-300 ease-in-out" href="others">Autres</a>
-		</nav>
-
-		<div id="subpage-container" class="flex flex-col justify-center"></div>
-
-		<hr class="my-4"/>
-	</div>
-
-
+	{% block footer %}{% endblock %}
 {% endblock %}
