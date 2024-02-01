@@ -1,0 +1,81 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello AdhererController!
+{% endblock %}
+
+{% block body %}
+	<div class="font-sans leading-normal tracking-normal">
+
+		<div class="container mx-auto my-8 p-8">
+			<h2 class="text-2xl font-bold mb-4 text-red-700">NOUVEAUTÉ CETTE ANNÉE : toutes les inscriptions se font sur l’application Ten’Up !</h2>
+			<p>Pour vous aider dans cette nouvelle démarche :</p>
+			<ul class="list-disc list-inside">
+				<li>Connectez-vous à l’application Ten’Up (vous créer 1 compte si ce n’est pas déjà fait)</li>
+				<li>Aller dans l’onglet « Mes Clubs »</li>
+				<li>Cliquez sur votre Club</li>
+				<li>Aller dans l’onglet « Offres » pour sélectionner votre cours</li>
+				<li>Et valider en cliquant sur le « Se pré-inscrire »</li>
+			</ul>
+			<p class="mt-8 mb-2 font-bold">Retrouvez les tarifs pour la saison
+				<span>{{ currentSeason }}</span>
+				ci-dessous.</p>
+		</p>
+		<p class="mb-2">Pour ceux qui s’inscrivent pour la 1ère fois n’hésitez pas à nous demander si vous avez besoin d’aide.</p>
+
+		<div class="mt-8 grid grid-cols-1 md:grid-cols-2 gap-4">
+			<div class="text-center">
+				<h3 class="text-lg font-semibold mb-2 text-center">MINEURS</h3>
+				<p>Licence FFT enfant de -7 ans = 12€</p>
+				<p>Licence FFT enfant de +7 ans = 22€</p>
+
+				<div class="flex-container mt-4 text-sm">
+					<p>Adhésion + Cours 1h pour les enfants nés en
+						<span>{{ cas1|date("Y") }}</span>
+						et après = 78€</p>
+				</div>
+
+				<div class="flex-container text-sm">
+					<p>Adhésion + Cours 1h pour les enfants nés entre
+						<span>{{ cas2|date("Y") }}</span>
+						et
+						<span>{{ cas3|date("Y") }}</span>
+						= 108€
+					</p>
+				</div>
+
+				<div class="flex-container text-sm">
+					<p>Adhésion + Cours 1h pour les enfants nés entre
+						<span>{{ cas4|date("Y") }}</span>
+						et
+						<span>{{ cas3|date("Y") }}</span>
+						= 138€
+					</p>
+				</div>
+
+				<p class="opacity-50 text-sm mt-4">Téléchargez ci-dessous les éléments pour l'inscription de votre enfants :</p>
+
+				<div class="flex justify-center">
+					<button class="mt-4">
+						<a href="#" class="flex bg-orange-500 hover:bg-orange-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">Questionnaire santé</a>
+					</button>
+					<button class="flex mt-4 ml-4">
+						<a href="#" class="flex bg-orange-500 hover:bg-orange-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">Fiche inscription</a>
+					</button>
+				</div>
+			</div>
+
+			<div class="text-center">
+				<h3 class="text-lg font-semibold mb-2 text-center">ADULTES</h3>
+				<p class="font-semibold">ADULTES à partir de 18 ans</p>
+				<p class="text-sm">Licence FFT = 32€</p>
+				<p class="text-sm">Adhésion club sans cours = 58€</p>
+				<p class="text-sm">Adhésion + Cours 1h30 = 168€</p>
+				<p class="text-sm">Cours supplémentaire 1h30 = 80€</p>
+				<p class="opacity-50 text-sm mt-4">Téléchargez ci-dessous les éléments pour votre inscription :</p>
+				<button class="mt-4">
+					<a href="#" class="bg-orange-500 hover:bg-orange-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">Fiche inscription</a>
+				</button>
+			</div>
+		</div>
+	</div>
+{% endblock %}
