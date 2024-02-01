@@ -1,0 +1,133 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello AboutController!
+{% endblock %}
+
+{% block javascripts %}
+	{{ encore_entry_script_tags('about') }}
+{% endblock %}
+
+{% block body %}
+	<section id="about" class="py-10">
+		<div class="max-w-xs sm:max-w-md md:max-w-lg lg:max-w-4xl mx-auto px-2 sm:px-4">
+			<h1 class="text-2xl sm:text-3xl font-bold mb-4">Présentation</h1>
+			<p class="mb-4">Fruit de la fusion entre l'Entente Smarovil et le Tennis Club de Nieuil l'Espoir, le nouveau club des Raquettes du Miosson a vu le jour le 1er septembre.</p>
+			<p class="mb-4">Pas moins de 230 joueurs, homme, femme, enfant de 4 à 17 ans vont pouvoir taper la balle jaune sur les courts de Nieuil l'Espoir, les Roches-Prémarie-Andillé, La Villedieu du Clain ou encore Smarves. 4 courts couverts et 6 courts extérieurs.</p>
+			<p>L'équipe pédagogique est composée de deux DE et d'une stagiaire DEJEPS en fonction.</p>
+		</div>
+	</section>
+
+	<section id="directorcommittee" class="py-10">
+		<div class="max-w-xs sm:max-w-md md:max-w-lg lg:max-w-4xl mx-auto px-2 sm:px-4">
+			<h1 class="text-2xl sm:text-3xl font-bold mb-4">Comité Directeur</h1>
+			<div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+				<div>
+					<ul class="list-disc pl-5 space-y-2">
+						<li>Présidents : Jean-Christophe PERMANN</li>
+						<li>Trésorier : Benjamin BUY</li>
+						<li>Trésorière adjointe : Liliane CHAMAILLARD</li>
+						<li>Secrétaire : Nathalie VIGNAUD-GERVAIS</li>
+						<li>Secrétaire adjoint : Anne BION-FORT</li>
+					</ul>
+				</div>
+				<div>
+					<ul class="list-disc pl-5 space-y-2">
+						<li>Membres :</li>
+						<ul class="list-disc pl-5 sm:pl-10 space-y-1">
+							<li>Carine BAQUIER</li>
+							<li>Pascal COURBIER</li>
+							<li>Estelle DUCHATEAU</li>
+							<li>Mathieu GALVAING</li>
+							<li>Fabien GEAI</li>
+							<li>Jérémy LAMY</li>
+							<li>Antoine LE BRUN</li>
+							<li>Christophe LEROY</li>
+							<li>Nicolas QUENTIER</li>
+						</ul>
+					</ul>
+				</div>
+			</div>
+		</div>
+	</section>
+
+	<section id="trainers" class="py-10">
+		<div class="max-w-xs sm:max-w-md md:max-w-lg lg:max-w-4xl mx-auto px-2 sm:px-4">
+			<h1 class="text-2xl sm:text-3xl font-bold mb-4">Entraîneurs</h1>
+			<div
+				class="grid grid-cols-1 gap-8 sm:grid-cols-2 justify-center">
+				<!-- Entraîneur 1 -->
+				<div class="text-center">
+					<h2 class="text-lg sm:text-xl font-semibold mb-2">Olivier QUINTARD</h2>
+					<p class="mb-2">En charge des entraînements aux Roches-Prémarie-Andillé</p>
+					<p class="mb-2">En CDI depuis 16 ans.</p>
+					<p class="font-medium">Diplôme : BPJEPS mention Activités Physiques pour Tous</p>
+				</div>
+				<!-- Entraîneur 2 -->
+				<div class="text-center">
+					<h2 class="text-lg sm:text-xl font-semibold mb-2">Bastien DUBOSC</h2>
+					<p class="mb-2">En charge des entraînements à Nieuil l'Espoir.</p>
+					<p class="mb-2">En CDI depuis 4 ans.</p>
+					<p class="font-medium">Diplôme : Diplôme d'Etat de Moniteur de Tennis</p>
+				</div>
+				<!-- Entraîneur 3 -->
+				<div class="text-center col-span-1 sm:col-span-2">
+					<h2 class="text-lg sm:text-xl font-semibold mb-2">Marie PELLETAN</h2>
+					<p class="mb-2">Donne des cours aux Roches-Prémarie-Andillé et Nieuil l'Espoir.</p>
+					<p class="mb-2">Stagiaire DEJEPS en fonction.</p>
+					<p class="font-medium">Diplôme : Master MEEF / CQP Éducateur Tennis</p>
+				</div>
+			</div>
+		</div>
+	</section>
+
+	<section id="equipment" class="py-10">
+		<div class="max-w-xs sm:max-w-md md:max-w-lg lg:max-w-4xl mx-auto px-2 sm:px-4">
+			<h1 class="text-2xl sm:text-3xl font-bold mb-4">Équipements</h1>
+			<p class="mb-4">Le club Raquettes du Miosson rayonne sur les communes de :</p>
+			<ul class="list-disc pl-5 space-y-2 mb-4">
+				<li>Nieuil l'Espoir</li>
+				<li>Les Roches-Prémarie-Andillé</li>
+				<li>Smarves</li>
+				<li>La Villedieu du Clain</li>
+			</ul>
+			<p>Ce qui représente : 4 courts couverts et 6 courts extérieurs.</p>
+		</div>
+		<div class="container mx-auto px-2 sm:px-4 mb-6 mt-6">
+			<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+				<div id="card1" modalimg1="images/about/nieul-1.jpg" modalimg2="images/about/nieul-2.jpg" class="card cursor-pointer bg-white shadow-lg rounded-lg overflow-hidden transform transition duration-500 hover:scale-110">
+					<img class="w-full h-full object-contain" src="images/about/nieuil.jpg" alt="">
+					<div class="p-4">
+						<h3 class="font-bold text-xl mb-2 text-center">Nieuil l'Espoir</h3>
+					</div>
+				</div>
+				<div id="card2" modalimg1="images/about/Rcohes-1.jpg" modalimg2="images/about/Rcohes-2.jpg" class="card cursor-pointer bg-white shadow-lg rounded-lg overflow-hidden transform transition duration-500 hover:scale-110">
+					<img class="w-full h-full object-contain" src="images/about/rochepremarieandille.jpg" alt="">
+					<div class="p-4">
+						<h3 class="font-bold text-xl mb-2 text-center">Les Roches-Prémarie-Andillé</h3>
+					</div>
+				</div>
+				<div id="card3" modalimg1="images/about/Smarves-1.jpg" modalimg2="images/about/Smarves-2.jpg" class="card cursor-pointer bg-white shadow-lg rounded-lg overflow-hidden transform transition duration-500 hover:scale-110">
+					<img class="w-full h-full object-contain" src="images/about/smarves.jpg" alt="">
+					<div class="p-4">
+						<h3 class="font-bold text-xl mb-2 text-center">Smarves</h3>
+					</div>
+				</div>
+				<div id="card4" modalimg1="images/about/Villedieu-1.jpg" modalimg2="images/about/Villedieu-2.jpg" class="card cursor-pointer bg-white shadow-lg rounded-lg overflow-hidden transform transition duration-500 hover:scale-110">
+					<img class="w-full h-full object-contain" src="images/about/villedieu.jpg" alt="">
+					<div class="p-4">
+						<h3 class="font-bold text-xl mb-2 text-center">La Villedieu du Clain</h3>
+					</div>
+				</div>
+			</div>
+		</section>
+
+		<div id="modal" class="hidden fixed inset-0 z-10 overflow-auto bg-black bg-opacity-50 flex justify-center items-center">
+			<div class="modal-content bg-white rounded-lg shadow-lg relative p-5" style="width: fit-content;">
+				<span id="closeModal" class="absolute top-0 right-0 cursor-pointer p-2 text-2xl font-bold hover:text-red-700 transition duration-300">&times;</span>
+				<div class="flex justify-center items-center">
+					<img id="modalImg1" src="" alt="Image 1" class="h-auto max-h-96 object-scale-down mr-4">
+					<img id="modalImg2" src="" alt="Image 2" class="h-auto max-h-96 object-scale-down pr-2">
+				</div>
+			</div>
+		</div>
+	{% endblock %}
