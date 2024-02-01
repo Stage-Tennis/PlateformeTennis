@@ -6,6 +6,7 @@ use App\Repository\CivilityRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Serializer\Annotation\Groups;
 
 #[ORM\Entity(repositoryClass: CivilityRepository::class)]
 class Civility
@@ -16,6 +17,7 @@ class Civility
     private ?int $id = null;
 
     #[ORM\Column(length: 255)]
+    #[Groups(['basic_infos'])]
     private ?string $label = null;
 
     #[ORM\OneToMany(mappedBy: 'civility', targetEntity: User::class)]
