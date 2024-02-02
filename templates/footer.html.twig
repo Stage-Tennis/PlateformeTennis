@@ -1,9 +1,9 @@
-<footer class="bg-gray-100 shadow-xl">
-	<div class="container mx-auto flex flex-wrap justify-center items-start py-8">
+<footer class="bg-white border-t shadow-xl border-gray-300 pt-4">
+	<div class="container mx-auto flex flex-wrap justify-center items-start">
 		<div class="w-full md:w-1/4 mb-6 md:mb-0 px-4">
 			<h3 class="text-xl mb-4">À propos de nous</h3>
 			<ul>
-				<li><a class="hover:text-orange-600 transition underline duration-300 ease-in-out" href="">Qui sommes nous ?</a></li>
+				<li><a class="hover:text-orange-600 transition underline duration-300 ease-in-out" href="/about">Qui sommes nous ?</a></li>
 				<li><a class="hover:text-orange-600 transition underline duration-300 ease-in-out" href="">Plan du site</a></li>
 				<li><a class="hover:text-orange-600 transition underline duration-300 ease-in-out" href="">Politique de confidentialité</a></li>
 				<li><a class="hover:text-orange-600 transition underline duration-300 ease-in-out" href="">Conditions d'utilisation</a></li>
@@ -21,17 +21,22 @@
 		</div>
 
 		<div class="w-full md:w-1/4 px-4">
-			<h3 class="text-xl mb-4">Contactez-nous</h3>
+			<a href="/contact">
+				<h3 class="text-xl mb-4">Contactez-nous</h3>
+			</a>
 			<address class="">
-				<a class="hover:text-orange-600 transition duration-300 ease-in-out" href="https://www.facebook.com/people/Raquettes-du-Miosson/100084840079236/">Facebook</a><br>
 				<a href="mailto:raquettesdumiosson@gmail.com">raquettesdumiosson@gmail.com</a><br>
 				Mairie de Nieuil-l’Espoir<br>
 				Place de l’Église, 86340 Nieuil-l’Espoir<br>
+				<a href="https://www.facebook.com/Raquettes-du-Miosson-103149561404585" class=" w-full text-orange-600">
+					<img src="/images/facebook-color-svgrepo-com.svg" class="w-10 h-auto rounded hover:scale-110 transition-transform duration-300"/>
+				</a>
 			</address>
 		</div>
 	</div>
 
 	<p class="mt-8 text-sm text-center">©
 		{{ "now"|date("Y") }}
-		Club Raquettes du Miosson. Tous droits réservés.</p>
-</div></footer>
+		Club Raquettes du Miosson. Tous droits réservés.
+	</p>
+</footer>

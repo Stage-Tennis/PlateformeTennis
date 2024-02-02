@@ -3,46 +3,45 @@
 {% block title %}Hello PanelController!
 {% endblock %}
 
-<<<<<<< HEAD
+{% block javascripts %}
+	{{ encore_entry_script_tags("useredit") }}
+{% endblock %}
+
+
 {% block body %}
 	<div class="container mx-auto p-4">
-		<div class="bg-white shadow-lg rounded-lg p-6 mb-4">
-			<h1 class="text-2xl font-semibold text-gray-700">Panneau Utilisateur</h1>
-		</div>
-
-		<div class="bg-white shadow-lg rounded-lg p-6">
+		<div class="rounded-lg p-6">
 			<h2 class="text-xl font-semibold text-gray-600 mb-4">Mes informations</h2>
-			<form>
+			<form class="flex flex-col">
 				<ul class="grid grid-cols-2 gap-4 w-auto">
-					<li class="text-gray-700">Nom :
-						<input class="text-gray-600" type="text" name="name" value="{{ app.user.name }}">
+					<li class="text-gray-700 text-sm font-bold mb-2">Nom :
+						<input class="text-gray-600 border rounded w-full py-2 px-3 text-base font-normal shadow " maxlength="55" type="text" name="name" value="{{ app.user.name }}">
 					</li>
-					<li class="text-gray-700">Prénom :
-						<input class="text-gray-600" type="text" name="surname" value="{{ app.user.surname }}">
+					<li class="text-gray-700 text-sm font-bold mb-2">Prénom :
+						<input class="text-gray-600 border rounded w-full py-2 px-3 text-base font-normal shadow" maxlength="55" type="text" name="surname" value="{{ app.user.surname }}">
 					</li>
-					<li class="text-gray-700">Date d'anniversaire :
-						<input class="text-gray-600" type="date" name="birthdate" value="{{ app.user.birthdate|date("Y-m-d") }}">
+					<li class="text-gray-700 text-sm font-bold mb-2">Date d'anniversaire :
+						<input class="text-gray-600 border rounded w-full py-2 px-3 text-base font-normal shadow" type="date" name="birthdate" value="{{ app.user.birthdate|date("Y-m-d") }}">
 					</li>
-					<li class="text-gray-700">Adresse mail :
-						<input class="text-gray-600 " type="email" name="email" value="{{ app.user.email }}">
+					<li class="text-gray-700 text-sm font-bold mb-2">Adresse mail :
+						<input class="text-gray-600 border w-full py-2 px-3 text-base font-normal shadow" maxlength="180" type="email" name="email" value="{{ app.user.email }}">
 					</li>
-					<li class="text-gray-700">Numéro de téléphone :
-						<input class="text-gray-600" type="tel" name="phone" value="{{ app.user.phone }}">
+					<li class="text-gray-700 text-sm font-bold mb-2">Numéro de téléphone :
+						<input type="text" class="text-gray-600 border rounded w-full py-2 px-3 text-base font-normal shadow" maxlength="10" type="tel" name="phone" value="{{ app.user.phone }}">
 					</li>
-					<li class="text-gray-700">Adresse :
-						<input class="text-gray-600 w-auto" name="address" value="{{ app.user.address }}">
+					<li class="text-gray-700 text-sm font-bold mb-2">Adresse :
+						<input class="text-gray-600 border rounded w-full py-2 px-3 text-base font-normal shadow" maxlength="255" type="text" name="address" value="{{ app.user.address }}">
 					</li>
-					<li class="text-gray-700">Code postal :
-						<input class="text-gray-600" type="text" name="zipcode" value="{{ app.user.zipcode }}">
+					<li class="text-gray-700 text-sm font-bold mb-2">Code postal :
+						<input class="text-gray-600 border rounded w-full py-2 px-3 text-base font-normal shadow " maxlength="5" type="text" name="zipcode" value="{{ app.user.zipcode }}">
 					</li>
-					<li class="text-gray-700">Ville :
-						<input class="text-gray-600" type="text" name="city" value="{{ app.user.city }}">
+					<li class="text-gray-700 text-sm font-bold mb-2">Ville :
+						<input class="text-gray-600 border w-full py-2 px-3 text-base font-normal shadow " maxlength="128" type="text" name="city" value="{{ app.user.city }}">
 					</li>
 				</ul>
-				<input type="submit" class="mt-4 px-4 py-2 bg-orange-600 hover:bg-white hover:text-orange-600 rounded-md px-transition duration-300 ease-in-out" value="Valider les informations"></input>
-		</form>
+				<input type="" id="validateBtn" class="mt-4 px-4 py-2 bg-orange-600 hover:bg-gray-100 hover:text-orange-600 rounded-md px-transition duration-300 ease-in-out text-center self-start" value="Valider les informations">
+				<input type="submit" id="confirmBtn" class="mt-4 px-4 py-2 bg-green-600 hover:bg-gray-100 hover:text-green-600 rounded-md px-transition duration-300 ease-in-out hidden self-end" value="Confirmer les modifications">
+			</form>
+		</div>
 	</div>
-</div>{% endblock %}
-=======
-{% block body %}{% endblock %}
->>>>>>> a327e71 (thicc commit im bored)
+{% endblock %}
