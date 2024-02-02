@@ -44,6 +44,7 @@ class UserFixture extends Fixture implements DependentFixtureInterface
         $user->setFirstConnection(true);
         $user->setSportAge($faker->numberBetween(1, 10));
         $user->setTokenAmount($faker->numberBetween(0, 100));
+        $user->setLicenseSerial(strval($faker->numberBetween(1000000, 9999999)) . $faker->randomLetter());
 
         $manager->persist($user);
     }
