@@ -9,13 +9,7 @@ use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
 use Symfony\Component\Security\Core\User\UserInterface;
-
-enum Roles: string
-{
-    case ROLE_ADMIN = 'ROLE_ADMIN';
-    case ROLE_TRAINER = 'ROLE_TRAINER';
-    case ROLE_USER = 'ROLE_USER';
-}
+use Symfony\Component\Serializer\Annotation\Groups;
 
 #[ORM\Entity(repositoryClass: UserRepository::class)]
 #[ORM\Table(name: '`user`')]
@@ -24,12 +18,15 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column]
+    #[Groups(['basic_infos'])]
     private ?int $id = null;
 
     #[ORM\Column(length: 180, unique: true)]
+    #[Groups(['basic_infos'])]
     private ?string $email = null;
 
     #[ORM\Column]
+    #[Groups(['basic_infos'])]
     private array $roles = [];
 
     /**
@@ -39,44 +36,60 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     private ?string $password = null;
 
     #[ORM\Column(length: 55)]
+    #[Groups(['basic_infos'])]
     private ?string $name = null;
 
     #[ORM\Column(length: 55)]
+    #[Groups(['basic_infos'])]
     private ?string $surname = null;
 
     #[ORM\Column(type: Types::DATE_MUTABLE)]
+    #[Groups(['basic_infos'])]
     private ?\DateTimeInterface $birthdate = null;
 
     #[ORM\Column]
+    #[Groups(['basic_infos'])]
     private ?bool $first_connection = null;
 
     #[ORM\Column(length: 255)]
+    #[Groups(['basic_infos'])]
     private ?string $address = null;
 
     #[ORM\Column(length: 5)]
+    #[Groups(['basic_infos'])]
     private ?string $zipcode = null;
 
     #[ORM\Column(length: 128)]
+    #[Groups(['basic_infos'])]
     private ?string $city = null;
 
     #[ORM\Column(length: 10)]
+    #[Groups(['basic_infos'])]
     private ?string $phone = null;
 
     #[ORM\Column]
+    #[Groups(['basic_infos'])]
     private ?int $sport_age = null;
 
     #[ORM\Column]
+    #[Groups(['basic_infos'])]
     private ?int $token_amount = null;
 
     #[ORM\ManyToOne(inversedBy: 'users')]
     #[ORM\JoinColumn(nullable: false)]
+    #[Groups(['basic_infos'])]
     private ?Civility $civility = null;
 
     #[ORM\ManyToMany(targetEntity: Level::class, inversedBy: 'users')]
+    #[Groups(['basic_infos'])]
     private Collection $level;
 
     #[ORM\ManyToMany(targetEntity: Planning::class, inversedBy: 'users')]
     private Collection $courses;
+
+    #[ORM\Column(length: 8)]
+    #[Groups(['basic_infos'])]
+    private ?string $license_serial = null;
 
     public function __construct()
     {
@@ -329,6 +342,18 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     public function removeCourse(Planning $course): static
     {
         $this->courses->removeElement($course);
+
+        return $this;
+    }
+
+    public function getLicenseSerial(): ?string
+    {
+        return $this->license_serial;
+    }
+
+    public function setLicenseSerial(string $license_serial): static
+    {
+        $this->license_serial = $license_serial;
 
         return $this;
     }

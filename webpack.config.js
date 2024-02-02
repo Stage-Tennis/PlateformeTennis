@@ -25,6 +25,8 @@ Encore
     // When enabled, Webpack "splits" your files into smaller pieces for greater optimization.
     .splitEntryChunks()
 
+    .enableSvelte()
+
     // will require an extra script tag for runtime.js
     // but, you probably want this, unless you're building a single-page app
     .enableSingleRuntimeChunk()
@@ -53,6 +55,13 @@ Encore
         config.corejs = '3.23';
     })
 
+    // Enables Stimulus support
+    .enableStimulusBridge("./assets/controllers.json")
+
+    .configureDevServerOptions(options => {
+        options.allowedHosts = 'all';
+    })
+
     // enables Sass/SCSS support
     //.enableSassLoader()
 
@@ -68,6 +77,6 @@ Encore
 
     // uncomment if you're having problems with a jQuery plugin
     //.autoProvidejQuery()
-;
+    ;
 
 module.exports = Encore.getWebpackConfig();
