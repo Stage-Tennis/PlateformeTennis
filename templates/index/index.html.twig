@@ -4,7 +4,7 @@
 {% endblock %}
 
 {% block javascripts %}
-	{{ encore_entry_script_tags('carousel') }}
+	{{ encore_entry_script_tags('carrousel_index') }}
 {% endblock %}
 
 {% block body %}
@@ -27,8 +27,6 @@
 					{% endfor %}
 				{% endfor %}
 			</div>
-
-
 			<button class="prev absolute left-0 top-1/2 transform -translate-y-1/2 z-20 bg-gray-800 text-white p-4 cursor-pointer opacity-75 hover:opacity-100" onclick="changeSlide(-1)">&#10094;</button>
 			<button class="next absolute right-0 top-1/2 transform -translate-y-1/2 z-20 bg-gray-800 text-white p-4 cursor-pointer opacity-75 hover:opacity-100" onclick="changeSlide(1)">&#10095;</button>
 		</div>
