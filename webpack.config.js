@@ -24,6 +24,7 @@ Encore
   .addEntry("carrousel_index", "./assets/carrousel.js")
   .addEntry("contact", "./assets/contact.js")
   .addEntry("useredit", "./assets/useredit.js")
+  .addEntry("setNewPassword", "./assets/setNewPassword.js")
   .addEntry("about", "./assets/about.js")
   .addEntry("carrousel_partenaire", "./assets/carrousel_partenaires.js")
 
