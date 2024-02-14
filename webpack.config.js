@@ -27,6 +27,8 @@ Encore
   .addEntry("setNewPassword", "./assets/setNewPassword.js")
   .addEntry("about", "./assets/about.js")
   .addEntry("carrousel_partenaire", "./assets/carrousel_partenaires.js")
+  .addEntry("login", "./assets/login.js")
+  .addEntry("reset", "./assets/reset.js")
 
   // When enabled, Webpack "splits" your files into smaller pieces for greater optimization.
   .splitEntryChunks()
