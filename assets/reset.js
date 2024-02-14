@@ -1,7 +1,10 @@
-
 document.addEventListener("DOMContentLoaded", function () {
-  const newPassword = document.getElementById("newPassword");
-  const repeatNewPassword = document.getElementById("repeatNewPassword");
+  const newPassword = document.getElementById(
+    "change_password_form_plainPassword_first"
+  );
+  const repeatNewPassword = document.getElementById(
+    "change_password_form_plainPassword_second"
+  );
 
   const errorDiv = document.createElement("div");
   errorDiv.className = "text-red-600 mt-2";
@@ -36,16 +39,16 @@ document.addEventListener("DOMContentLoaded", function () {
       }
     });
 
-  newPassword.addEventListener("input", function () {
-    updatePasswordConditions(newPassword.value);
-  });
+  newPassword.addEventListener("input", () =>
+    updatePasswordConditions(newPassword.value, repeatNewPassword.value)
+  );
 
-  repeatNewPassword.addEventListener("input", function () {
-    updatePasswordConditions(repeatNewPassword.value);
-  });
+  repeatNewPassword.addEventListener("input", () =>
+    updatePasswordConditions(newPassword.value, repeatNewPassword.value)
+  );
 
-  updatePasswordConditions("");
-  function updatePasswordConditions(newPassword) {
+  updatePasswordConditions("", "");
+  function updatePasswordConditions(newPassword, repeatNewPassword) {
     // Initialisation de toutes les conditions sur rouge
     document.getElementById("condition-length").style.color = "red";
     document.getElementById("condition-lowercase").style.color = "red";
@@ -58,6 +61,7 @@ document.addEventListener("DOMContentLoaded", function () {
     if (newPassword.length >= 12 && newPassword.length <= 255) {
       document.getElementById("condition-length").style.color = "green";
     }
+
     if (/[a-z]/.test(newPassword)) {
       document.getElementById("condition-lowercase").style.color = "green";
     }
@@ -70,11 +74,16 @@ document.addEventListener("DOMContentLoaded", function () {
     if (/[@$!%*?&]/.test(newPassword)) {
       document.getElementById("condition-specialchar").style.color = "green";
     }
-    if (
-      newPassword === repeatNewPassword.value &&
-      newPassword !== "" &&
-      repeatNewPassword.value !== ""
-    ) {
+
+    const a = newPassword === repeatNewPassword;
+    console.log(
+      `newPassword.value = ${newPassword}, repeatNewPassword.value = ${repeatNewPassword.value}`
+    );
+    const b = newPassword !== "";
+    const c = repeatNewPassword !== "";
+
+    console.log(`a = ${a}, b = ${b}, c = ${c}, a && b && c = ${a && b && c}`);
+    if (a && b && c) {
       document.getElementById("condition-match").style.color = "green";
     }
   }

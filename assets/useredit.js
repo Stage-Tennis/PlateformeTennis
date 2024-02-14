@@ -1,4 +1,3 @@
-console.log("bite");
 document.addEventListener("DOMContentLoaded", function () {
   // Sélection des éléments du formulaire et des éléments pour afficher les messages d'erreur
   const licenseSerial = document.querySelector("input[name='license_serial']");
