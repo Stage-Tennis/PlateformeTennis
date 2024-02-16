@@ -36,47 +36,48 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     private ?string $password = null;
 
     #[ORM\Column(length: 55)]
-    #[Groups(['basic_infos'])]
+    #[Groups(['basic_infos', 'on_creation_infos'])]
     private ?string $name = null;
 
     #[ORM\Column(length: 55)]
-    #[Groups(['basic_infos'])]
+    #[Groups(['basic_infos', 'on_creation_infos'])]
     private ?string $surname = null;
 
-    #[ORM\Column(type: Types::DATE_MUTABLE)]
+    #[ORM\Column(type: Types::DATE_MUTABLE, nullable: true)]
     #[Groups(['basic_infos'])]
     private ?\DateTimeInterface $birthdate = null;
 
+    // True if first connection has been done, false otherwise
     #[ORM\Column]
     #[Groups(['basic_infos'])]
     private ?bool $first_connection = null;
 
-    #[ORM\Column(length: 255)]
+    #[ORM\Column(length: 255, nullable: true)]
     #[Groups(['basic_infos'])]
     private ?string $address = null;
 
-    #[ORM\Column(length: 5)]
+    #[ORM\Column(length: 5, nullable: true)]
     #[Groups(['basic_infos'])]
     private ?string $zipcode = null;
 
-    #[ORM\Column(length: 128)]
+    #[ORM\Column(length: 128, nullable: true)]
     #[Groups(['basic_infos'])]
     private ?string $city = null;
 
-    #[ORM\Column(length: 10)]
+    #[ORM\Column(length: 10, nullable: true)]
     #[Groups(['basic_infos'])]
     private ?string $phone = null;
 
-    #[ORM\Column]
+    #[ORM\Column(nullable: true)]
     #[Groups(['basic_infos'])]
     private ?int $sport_age = null;
 
-    #[ORM\Column]
+    #[ORM\Column(nullable: true)]
     #[Groups(['basic_infos'])]
     private ?int $token_amount = null;
 
     #[ORM\ManyToOne(inversedBy: 'users')]
-    #[ORM\JoinColumn(nullable: false)]
+    #[ORM\JoinColumn(nullable: true)]
     #[Groups(['basic_infos'])]
     private ?Civility $civility = null;
 
@@ -87,7 +88,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\ManyToMany(targetEntity: Planning::class, inversedBy: 'users')]
     private Collection $courses;
 
-    #[ORM\Column(length: 8)]
+    #[ORM\Column(length: 8, nullable: true)]
     #[Groups(['basic_infos'])]
     private ?string $license_serial = null;
 
@@ -129,11 +130,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
      */
     public function getRoles(): array
     {
-        $roles = $this->roles;
-        // guarantee every user at least has ROLE_USER
-        $roles[] = 'ROLE_USER';
-
-        return array_unique($roles);
+        return $this->roles;
     }
 
     public function setRoles(array $roles): static
@@ -356,5 +353,10 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         $this->license_serial = $license_serial;
 
         return $this;
+    }
+
+    public function isAdmin(): bool
+    {
+        return in_array(Roles::ROLE_ADMIN->value, $this->roles);
     }
 }
