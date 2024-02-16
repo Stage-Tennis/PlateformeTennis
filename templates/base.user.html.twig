@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>
+			{% block title %}
+				Club Raquettes du Miosson - Le tennis, c'est pour toute la famille !
+			{% endblock %}
+		</title>
+		<link rel="icon" href="images/WebIcon-RdM.jpg">
+
+		{{ encore_entry_link_tags('app') }}
+		{% block stylesheets %}{% endblock %}
+
+		{{ encore_entry_script_tags('app') }}
+		{% block javascripts %}{% endblock %}
+	</head>
+	<body class="bg-gray-100 flex min-h-screen">
+		{% block header %}
+			<div class="fixed top-0 left-0 w-14 hover:w-64 md:w-64 bg-gray-900 h-full text-white transition-all duration-300 border-none z-10">
+				<div class="overflow-y-auto overflow-x-hidden flex flex-col justify-between flex-grow">
+					<ul class="flex flex-col py-4 space-y-1">
+						<li class="px-5">
+							<div class="flex flex-row items-center h-8">
+								<div class="text-sm font-light tracking-wide text-gray-400 uppercase">Menu</div>
+							</div>
+						</li>
+						<li>
+							<a href="/panel" class="relative flex flex-row items-center h-11 focus:outline-none hover:bg-gray-700 text-white-600 hover:text-white-800 border-l-4 border-transparent hover:border-gray-500 pr-6">
+								<span class="inline-flex justify-center items-center ml-4">
+									<i class="fas fa-user"></i>
+								</span>
+								<span class="ml-2 text-sm tracking-wide truncate">Mon profil</span>
+							</a>
+						</li>
+						<li>
+							<a href="/" class="relative flex flex-row items-center h-11 focus:outline-none hover:bg-gray-700 text-white-600 hover:text-white-800 border-l-4 border-transparent hover:border-gray-500 pr-6">
+								<span class="inline-flex justify-center items-center ml-4">
+									<i class="fas fa-calendar-alt"></i>
+								</span>
+								<span class="ml-2 text-sm tracking-wide truncate">Planning</span>
+							</a>
+						</li>
+						<li>
+							<a href="/" class="relative flex flex-row items-center h-11 focus:outline-none hover:bg-gray-700 text-white-600 hover:text-white-800 border-l-4 border-transparent hover:border-gray-500 pr-6">
+								<span class="inline-flex justify-center items-center ml-4">
+									<i class="fas fa-edit"></i>
+								</span>
+								<span class="ml-2 text-sm tracking-wide truncate">Modifier mes informations</span>
+							</a>
+						</li>
+					</ul>
+				</div>
+			</div>
+		</body>
+	</html>
+{% endblock %}
+{% block body %}{% endblock %}
+{% block footer %}
+	{% include "footer.html.twig" %}
+{% endblock %}</body></html>

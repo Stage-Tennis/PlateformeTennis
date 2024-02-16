@@ -21,10 +21,14 @@ Encore
    * and one CSS file (e.g. app.css) if your JavaScript imports CSS.
    */
   .addEntry("app", "./assets/app.js")
-  .addEntry("carousel", "./assets/carousel.js")
+  .addEntry("carrousel_index", "./assets/carrousel.js")
   .addEntry("contact", "./assets/contact.js")
   .addEntry("useredit", "./assets/useredit.js")
+  .addEntry("setNewPassword", "./assets/setNewPassword.js")
   .addEntry("about", "./assets/about.js")
+  .addEntry("carrousel_partenaire", "./assets/carrousel_partenaires.js")
+  .addEntry("login", "./assets/login.js")
+  .addEntry("reset", "./assets/reset.js")
 
   // When enabled, Webpack "splits" your files into smaller pieces for greater optimization.
   .splitEntryChunks()
@@ -63,7 +67,7 @@ Encore
   // Enables Stimulus support
   .enableStimulusBridge("./assets/controllers.json")
 
-  .configureDevServerOptions(options => {
-      options.allowedHosts = 'all';
+  .configureDevServerOptions((options) => {
+    options.allowedHosts = "all";
   });
 module.exports = Encore.getWebpackConfig();

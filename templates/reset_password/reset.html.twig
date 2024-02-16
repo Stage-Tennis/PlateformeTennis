@@ -1,0 +1,78 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Changer son mot de passe
+{% endblock %}
+
+{% block javascripts %}
+	{{ encore_entry_script_tags("reset") }}
+{% endblock %}
+
+
+{% block header %}{% endblock %}
+
+{% block body %}
+	<div class="flex justify-center items-center min-h-screen p-4">
+		<div class="w-full max-w-lg space-y-8">
+			<h1 class="text-center text-2xl font-bold">Changement de mot de passe</h1>
+
+			{{ form_start(resetForm, {'attr': {'class': 'bg-white shadow-md rounded px-4 py-6 space-y-6'}}) }}
+
+			<div>
+				{{ form_label(resetForm.plainPassword.first, 'Nouveau mot de passe', {'label_attr': {'class': 'block text-gray-700 text-sm font-bold mb-2'}}) }}
+				{{ form_widget(resetForm.plainPassword.first, {'attr': {'class': 'shadow appearance-none border rounded w-full py-3 px-4 text-gray-700 leading-tight focus:outline-none focus:shadow-outline', 'id': 'newPassword'}}) }}
+				{{ form_errors(resetForm.plainPassword.first) }}
+
+				<div id="passwordConditions" class="mt-4 p-4 rounded-lg bg-gray-50">
+					<span class="text-gray-700">Votre mot de passe doit contenir :</span>
+					<ul class="mt-2 grid grid-cols-1 sm:grid-cols-2 gap-4">
+						<li class="flex items-center">
+							<span class="h-6 w-6 flex justify-center items-center rounded-full bg-red-500 text-white">-</span>
+							<span class="ml-3 text-sm text-gray-600" id="condition-length">12 caractères</span>
+						</li>
+						<li>
+							<span class="h-6 w-6 flex justify-center items-center rounded-full bg-red-500 text-white">-</span>
+							<span class="ml-3 text-sm text-gray-600" id="condition-lowercase">une minuscule</span>
+						</li>
+						<li>
+							<span class="h-6 w-6 flex justify-center items-center rounded-full bg-red-500 text-white">-</span>
+							<span class="ml-3 text-sm text-gray-600" id="condition-uppercase">une majuscule</span>
+						</li>
+						<li>
+							<span class="h-6 w-6 flex justify-center items-center rounded-full bg-red-500 text-white">-</span>
+							<span class="ml-3 text-sm text-gray-600" id="condition-digit">un chiffre</psan>
+						</li>
+						<li>
+							<span class="h-6 w-6 flex justify-center items-center rounded-full bg-red-500 text-white">-</span>
+							<span class="ml-3 text-sm text-gray-600" id="condition-specialchar">un caractère spécial (ex : @, $, !, %, *, ?, &)</span>
+						</li>
+						<li>
+							<span class="h-6 w-6 flex justify-center items-center rounded-full bg-red-500 text-white">-</span>
+							<span class="ml-3 text-sm text-gray-600" id="condition-match">Les deux mots de passe doivent être identiques</span>
+						</li>
+					</ul>
+				</div>
+
+			</div>
+
+			<div>
+				{{ form_label(resetForm.plainPassword.second, 'Répéter le nouveau mot de passe', {'label_attr': {'class': 'block text-gray-700 text-sm font-bold mb-2'}}) }}
+				{{ form_widget(resetForm.plainPassword.second, {'attr': {'class': 'shadow appearance-none border rounded w-full py-3 px-4 text-gray-700 leading-tight focus:outline-none focus:shadow-outline', 'id': 'repeatNewPassword'}}) }}
+				{{ form_errors(resetForm.plainPassword.second) }}
+			</div>
+
+			<div class="flex items-center mb-4">
+				<input id="togglePassword" type="checkbox" class="mr-2">
+				<label for="togglePassword" class="text-sm text-gray-600">Afficher les mots de passe</label>
+			</div>
+
+			<div class="flex items-center justify-between">
+				<button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" type="submit">
+					Changer mon mot de passe
+				</button>
+			</div>
+
+			{{ form_end(resetForm) }}
+		</div>
+	</div>
+{% endblock %}
+{% block footer %}{% endblock %}

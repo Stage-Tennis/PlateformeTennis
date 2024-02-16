@@ -1,0 +1,63 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Nos partenaires - Raquettes du Miosson
+
+{% endblock %}
+
+{% block javascripts %}
+	{{ encore_entry_script_tags('carrousel_partenaire') }}
+{% endblock %}
+
+{% block stylesheets %}
+	<style>
+		.custom-width-class {
+			width: calc(4 * 12rem + 4 * 0.5rem);
+		}
+	</style>
+{% endblock %}
+
+
+{% block body %}
+	<div class="container mx-auto px-4">
+		<div class="mt-8">
+			<p class="mb-2">Dans le cadre de son nouveau projet de structuration, a mis en place une offre de partenariat 100% gagnante pour les partenaires.</p>
+			<p class="mb-6">Profitez d'une visibilité exceptionnelle que vous soyez commerçant ou une entreprise nationale.</p>
+			<h2 class="text-lg font-bold mb-4">POURQUOI DEVENIR PARTENAIRE ?</h2>
+			<ul class="list-disc list-inside mb-6">
+				<li>Un projet territorial : rencontrez les acteurs économique local et développez votre carnet d'adresses.</li>
+				<li>Une vitrine qualitative : bénéficiez de nos différentes plateformes de communication.</li>
+				<li>Un projet à taille humaine : En nous rejoignant, vous associez votre entreprise à notre club qui reste à taille humaine depuis 1981.</li>
+			</ul>
+			<p class="font-bold mb-4 ">N'ATTENDEZ PLUS ET REJOIGNEZ-NOUS !</p>
+			<p class="mb-6">Télécharger la plaquette de présentation de nos offres en
+				<a href="documents/partenaires/Plaquette-sponsoring-web.pdf" target="_blank" class="text-orange-600 hover:text-orange-800 visited:text-purple-600">cliquant-ici.</a>
+			</p>
+		</div>
+	</div>
+
+	<div class="container mx-auto px-4">
+		<div class="mt-8">
+			<h2 class="text-lg font-bold mb-4">NOS PARTENAIRES</h2>
+			<p class="mb-6">Nous remercions nos partenaires pour leur soutien et leur confiance.</p>
+		</div>
+	</div>
+
+	<div class="flex justify-center items-center mb-12">
+		<div id="carrousel" class="relative overflow-hidden h-48 w-3/4 bg-white rounded-md">
+			<div class="flex transition-transform ease-out duration-700" id="carrouselInner">
+				{% for i in 1..16 %}
+					<div class="flex-none w-48 h-48 m-1 bg-white shadow-lg rounded-lg overflow-hidden">
+						<img src="/images/partenaires/partenaire{{ i }}.webp" alt="Partenaire {{ i }}" class="object-contain w-full h-full"/>
+					</div>
+				{% endfor %}
+				<!-- Duplication des premières images pour le défilement continu -->
+				{% for i in 1..4 %}
+					<!-- Dupliquez maintenant 4 images pour un retour fluide -->
+					<div class="flex-none w-48 h-48 m-1 bg-white shadow-lg rounded-lg overflow-hidden">
+						<img src="/images/partenaires/partenaire{{ i }}.webp" alt="Partenaire {{ i }} (dupliqué)" class="object-contain w-full h-full"/>
+					</div>
+				{% endfor %}
+			</div>
+		</div>
+	</div>
+{% endblock %}

@@ -1,0 +1,145 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Pannel 1ère connexion - Raquettes du Miosson
+{% endblock %}
+
+{% block javascripts %}
+	{{ encore_entry_script_tags("useredit") }}
+	{{ encore_entry_script_tags("setNewPassword") }}
+{% endblock %}
+
+{% block header %}{% endblock %}
+
+
+{% block body %}
+	<div class="container mx-auto p-4">
+		<div class="rounded-lg p-6">
+			<h1 class="text-3xl font-bold text-gray-600 mb-4">Bienvenue
+				{{ app.user.name }}
+				!</h1>
+			<p class="text-gray-700 font-bold mb-2 underline">Pour votre première connexion, veuillez modifier votre mot de passe puis saisir vos informations personnelles.</p>
+			<p class="text-gray-700 text-sm font-bold mb-2 mt-6">Si tout est correct, cliquez sur "<span class="text-green-600">Valider les informations</span>"et ensuite sur "<span class="text-orange-600">Confirmer les modifications</span>".</p>
+			<p class="text-gray-700 text-sm font-bold mb-2">Vous pourrez ensuite accéder à votre espace personnel.</p>
+			<form class="flex flex-col" action="premiereConnexion" method="POST">
+				<div class="justify-between">
+					<h2 class="text-xl font-semibold text-gray-600 mb-4 mt-10">Modification du mot de passe</h2>
+					<div class="flex flex-col">
+						<label for="password" class="text-gray-700 text-sm font-bold mb-2">Nouveau mot de passe :</label>
+						<input class="text-gray-600 border rounded w-full py-2 px-3 text-base font-normal shadow" type="password" name="newPassword" id="newPassword" required>
+
+						<label for="passwordConfirm" class="text-gray-700 text-sm font-bold mb-2 mt-4">Confirmer le mot de passe :</label>
+						<input class="text-gray-600 border rounded w-full py-2 px-3 text-base font-normal shadow" type="password" name="repeatNewPassword" id="repeatNewPassword" required>
+
+						<div>
+							<input type="checkbox" id="togglePassword">
+							<label for="togglePassword" class="text-gray-700 text-sm font-bold mb-2 mt-2 select-none">Afficher les mots de passe</label>
+						</div>
+
+						<div id="passwordConditions">
+							Votre mot de passe doit contenir :
+							<ul class="grid grid-cols-2 gap-2 border rounded-lg bg-white shadow-lg ml-8 pl-4 p-2 mt-4">
+								<li>
+									<span class="font-bold text-xl text-red">-</span>
+									<span class="" id="condition-length">12 caractères</span>
+								</li>
+								<li>
+									<span class="font-bold text-xl text-black">-</span>
+									<span id="condition-lowercase">une minuscule</span>
+								</li>
+								<li>
+									<span class="font-bold text-xl text-black">-</span>
+									<span id="condition-uppercase">une majuscule</span>
+								</li>
+								<li>
+									<span class="font-bold text-xl text-black">-</span>
+									<span id="condition-digit">un chiffre</span>
+								</li>
+								<li>
+									<span class="font-bold text-xl text-black">-</span>
+									<span id="condition-specialchar">un caractère spécial (ex : @, $, !, %, *, ?, &)</span>
+								</li>
+								<li>
+									<span class="font-bold text-xl text-black">-</span>
+									<span id="condition-match">Les deux mots de passe doivent être identiques</span>
+								</li>
+							</ul>
+						</div>
+					</div>
+					<h2 class="text-xl font-semibold text-gray-600 mb-4 mt-6">Mes informations</h2>
+					<ul class="grid grid-cols-2 gap-4 w-auto">
+
+						<li class="text-gray-700 text-sm font-bold mb-2">Numéro de licence FTT :
+							<input class="text-gray-600 border rounded w-full py-2 px-3 text-base font-normal shadow " maxlength="8" type="text" name="license_serial" value="{{ app.user.licenseSerial }}" required>
+							<span class="error-message text-red-500 text-sm hidden" id="licenseSerialError"></span>
+						</li>
+
+						<li class="text-gray-700 text-sm font-bold mb-2">Nom :
+							<input class="text-gray-600 border rounded w-full py-2 px-3 text-base font-normal shadow " maxlength="55" type="text" name="name" value="{{ app.user.name }}" required>
+							<span class="error-message text-red-500 text-sm hidden" id="nameError"></span>
+
+						</li>
+						<li class="text-gray-700 text-sm font-bold mb-2">Prénom :
+							<input class="text-gray-600 border rounded w-full py-2 px-3 text-base font-normal shadow" maxlength="55" type="text" name="surname" value="{{ app.user.surname }}" required>
+							<span class="error-message text-red-500 text-sm hidden" id="surnameError"></span>
+						</li>
+
+						<li class="text-gray-700 text-sm font-bold mb-2">Civilité :
+							<select class="text-gray-600 border rounded w-full py-2 px-3 text-base font-normal shadow bg-white" name="civility" value="{{ app.user.civility.label }}" required>
+								<span class="error-message text-red-500 text-sm hidden" id="civilityError"></span>
+								{% for civility in civilities %}
+									<option class="bg-white" value="{{ civility.id }}">{{ civility.label }}</option>
+								{% endfor %}
+							</select>
+						</li>
+
+						<li class="text-gray-700 text-sm font-bold mb-2">Date d'anniversaire :
+							<input class="text-gray-600 border rounded w-full py-2 px-3 text-base font-normal shadow" type="date" name="birthdate" value="{{ app.user.birthdate|date("Y-m-d") }}" required>
+							<span class="error-message text-red-500 text-sm hidden" id="birthdateError"></span>
+						</li>
+
+						<li class="text-gray-700 text-sm font-bold mb-2">Adresse mail :
+							<input class="text-gray-600 border w-full py-2 px-3 text-base font-normal shadow" maxlength="180" type="email" name="email" value="{{ app.user.email }}" required>
+							<span class="error-message text-red-500 text-sm hidden" id="emailError"></span>
+						</li>
+
+						<li class="text-gray-700 text-sm font-bold mb-2">Numéro de téléphone :
+							<input type="text" class="text-gray-600 border rounded w-full py-2 px-3 text-base font-normal shadow" maxlength="10" type="tel" name="phone" value="{{ app.user.phone }}" required>
+							<span class="error-message text-red-500 text-sm hidden" id="phoneError"></span>
+						</li>
+
+						<li class="text-gray-700 text-sm font-bold mb-2">Adresse :
+							<input class="text-gray-600 border rounded w-full py-2 px-3 text-base font-normal shadow" maxlength="255" type="text" name="address" value="{{ app.user.address }}" required>
+							<span class="error-message text-red-500 text-sm hidden" id="addressError"></span>
+
+						</li>
+
+						<li class="text-gray-700 text-sm font-bold mb-2">Code postal :
+							<input class="text-gray-600 border rounded w-full py-2 px-3 text-base font-normal shadow " maxlength="5" type="text" name="zipcode" value="{{ app.user.zipcode }}" required>
+							<span class="error-message text-red-500 text-sm hidden" id="zipcodeError"></span>
+						</li>
+
+						<li class="text-gray-700 text-sm font-bold mb-2">Ville :
+							<input class="text-gray-600 border w-full py-2 px-3 text-base font-normal shadow " maxlength="128" type="text" name="city" value="{{ app.user.city }}" required>
+							<span class="error-message text-red-500 text-sm hidden" id="cityError"></span>
+						</li>
+
+						<li class="text-gray-700 text-sm font-bold mb-2">Année de commencement du tennis :
+							<input class="text-gray-600 border w-full py-2 px-3 text-base font-normal shadow " min="1940" et max="2099" maxlength="4" type="number" name="startTennis" placeholder="YYYY" required>
+							<span class="error-message text-red-500 text-sm hidden" id="startTennisError"></span>
+						</li>
+
+					</ul>
+					<div class="mb-4">
+						<input type="checkbox" id="consentCheckbox" name="consentCheckbox" class="mr-2 mt-6" required>
+						<label for="consentCheckbox" class="text-gray-700 text-sm font-bold">
+							J'accepte les
+							<a href="/cgu" class="text-blue-600 hover:text-blue-800 visited:text-purple-600">Conditions Générales d'Utilisation</a>
+						</label>
+					</div>
+
+					<input type="submit" id="confirmBtn" class="mt-4 px-4 py-2 bg-green-600 hover:bg-green-800 rounded-md px-transition duration-300 ease-in-out self-end" value="Confirmer les modifications">
+				</form>
+			</div>
+		</div>
+	{% endblock %}
+	{% block footer %}{% endblock %}

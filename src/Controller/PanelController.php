@@ -8,15 +8,16 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Security\Http\Attribute\IsGranted;
 use App\Entity\Roles;
+use Symfony\Component\Security\Http\Attribute\CurrentUser;
+use App\Entity\User;
+use Symfony\Component\HttpFoundation\RedirectResponse;
 
 #[IsGranted(new Expression("is_authenticated()"))]
 class PanelController extends AbstractController
 {
     #[Route('/panel', name: 'app_panel')]
-    public function index(): Response
+    public function index(#[CurrentUser] User $user): Response
     {
-        $user = $this->getUser();
-
         $response = match ($user->getRoles()[0]) {
             Roles::ROLE_ADMIN->value => $this->render('panel/admin.html.twig'),
             Roles::ROLE_TRAINER->value => $this->render('panel/trainer.html.twig'),
@@ -24,6 +25,8 @@ class PanelController extends AbstractController
             default => new Response("Unknown role: " . $user->getRoles()[0], 500),
         };
 
+        if ($user->isFirstConnection()) $response = new RedirectResponse("/premiereConnexion");
+        
         return $response;
     }
 }
