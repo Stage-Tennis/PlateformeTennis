@@ -1,4 +1,3 @@
-
 document.addEventListener("DOMContentLoaded", function () {
   const newPassword = document.getElementById("newPassword");
   const repeatNewPassword = document.getElementById("repeatNewPassword");
@@ -41,41 +40,55 @@ document.addEventListener("DOMContentLoaded", function () {
   });
 
   repeatNewPassword.addEventListener("input", function () {
-    updatePasswordConditions(repeatNewPassword.value);
+    // Vérifier uniquement la correspondance des mots de passe lors de la modification de repeatNewPassword
+    checkPasswordMatch(newPassword.value, repeatNewPassword.value);
   });
 
-  updatePasswordConditions("");
   function updatePasswordConditions(newPassword) {
-    // Initialisation de toutes les conditions sur rouge
-    document.getElementById("condition-length").style.color = "red";
-    document.getElementById("condition-lowercase").style.color = "red";
-    document.getElementById("condition-uppercase").style.color = "red";
-    document.getElementById("condition-digit").style.color = "red";
-    document.getElementById("condition-specialchar").style.color = "red";
-    document.getElementById("condition-match").style.color = "red";
+    // Mise à jour des conditions basées sur newPassword
+    document.getElementById("condition-length").style.color =
+      newPassword.length >= 12 && newPassword.length <= 255 ? "green" : "red";
+    document.getElementById("condition-lowercase").style.color = /[a-z]/.test(
+      newPassword
+    )
+      ? "green"
+      : "red";
+    document.getElementById("condition-uppercase").style.color = /[A-Z]/.test(
+      newPassword
+    )
+      ? "green"
+      : "red";
+    document.getElementById("condition-digit").style.color = /\d/.test(
+      newPassword
+    )
+      ? "green"
+      : "red";
+    document.getElementById("condition-specialchar").style.color =
+      /[@$!%*?&]/.test(newPassword) ? "green" : "red";
 
-    // Mise à jour des conditions si elles sont remplies
-    if (newPassword.length >= 12 && newPassword.length <= 255) {
-      document.getElementById("condition-length").style.color = "green";
-    }
-    if (/[a-z]/.test(newPassword)) {
-      document.getElementById("condition-lowercase").style.color = "green";
-    }
-    if (/[A-Z]/.test(newPassword)) {
-      document.getElementById("condition-uppercase").style.color = "green";
-    }
-    if (/\d/.test(newPassword)) {
-      document.getElementById("condition-digit").style.color = "green";
-    }
-    if (/[@$!%*?&]/.test(newPassword)) {
-      document.getElementById("condition-specialchar").style.color = "green";
-    }
-    if (
-      newPassword === repeatNewPassword.value &&
-      newPassword !== "" &&
-      repeatNewPassword.value !== ""
-    ) {
+    // Vérification de la correspondance des mots de passe ici pour s'assurer qu'elle est vérifiée à chaque fois que newPassword est modifié
+    checkPasswordMatch(newPassword, repeatNewPassword.value);
+  }
+
+  updatePasswordConditions(newPassword.value);
+
+  function checkPasswordMatch(newPassword, repeatNewPassword) {
+    // Mise à jour de la condition de correspondance des mots de passe
+    // Assurez-vous que les deux champs ne sont pas vides et contiennent le même contenu
+    if (newPassword.length > 0 && newPassword === repeatNewPassword) {
       document.getElementById("condition-match").style.color = "green";
+    } else {
+      document.getElementById("condition-match").style.color = "red";
     }
   }
+
+  // Ajoutez cet écouteur d'événements au champ repeatNewPassword
+  repeatNewPassword.addEventListener("input", function () {
+    checkPasswordMatch(newPassword.value, repeatNewPassword.value);
+  });
+
+  // N'oubliez pas d'initialiser correctement lors du chargement de la page
+  document.addEventListener("DOMContentLoaded", function () {
+    checkPasswordMatch(newPassword.value, repeatNewPassword.value);
+  });
 });

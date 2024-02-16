@@ -76,13 +76,9 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 
     const a = newPassword === repeatNewPassword;
-    console.log(
-      `newPassword.value = ${newPassword}, repeatNewPassword.value = ${repeatNewPassword.value}`
-    );
     const b = newPassword !== "";
     const c = repeatNewPassword !== "";
 
-    console.log(`a = ${a}, b = ${b}, c = ${c}, a && b && c = ${a && b && c}`);
     if (a && b && c) {
       document.getElementById("condition-match").style.color = "green";
     }
