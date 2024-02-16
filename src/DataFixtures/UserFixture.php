@@ -29,7 +29,12 @@ class UserFixture extends Fixture implements DependentFixtureInterface
         $levels = $manager->getRepository(Level::class)->findAll();
 
         $user = new User();
-        $user->setEmail($faker->email);
+
+        if ($role === Roles::ROLE_ADMIN)
+            $user->setEmail("admin@test.fr");
+        else
+            $user->setEmail($faker->email);
+
         $user->setPassword($this->passwordHasher->hashPassword($user, "password"));
         $user->setName($faker->firstName);
         $user->setSurname($faker->lastName);
@@ -38,6 +43,15 @@ class UserFixture extends Fixture implements DependentFixtureInterface
         $user->setZipcode($faker->postcode);
         $user->setCity($faker->city);
         $user->addLevel($faker->randomElement($levels));
+
+        if ($faker->boolean(50)) {
+            $user->addLevel($faker->randomElement($levels));
+
+            if ($faker->boolean(50)) {
+                $user->addLevel($faker->randomElement($levels));
+            }
+        }
+
         $user->setCivility($faker->randomElement($civilities));
         $user->setRoles([$role]);
         $user->setBirthdate($faker->dateTimeBetween('-50 years', '-18 years'));
@@ -48,14 +62,18 @@ class UserFixture extends Fixture implements DependentFixtureInterface
 
         $manager->persist($user);
     }
+
     public function load(ObjectManager $manager): void
     {
         $this->manager = $manager;
 
         $this->create_user(Roles::ROLE_ADMIN);
-        $this->create_user(Roles::ROLE_USER);
-        $this->create_user(Roles::ROLE_USER);
-        $this->create_user(Roles::ROLE_TRAINER);
+
+        for ($i = 0; $i < 15; $i++) {
+            $this->create_user(Roles::ROLE_USER);
+            $this->create_user(Roles::ROLE_USER);
+            $this->create_user(Roles::ROLE_TRAINER);
+        }
 
         $manager->flush();
     }
