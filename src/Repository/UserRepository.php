@@ -8,6 +8,7 @@ use Doctrine\Persistence\ManagerRegistry;
 use Symfony\Component\Security\Core\Exception\UnsupportedUserException;
 use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
 use Symfony\Component\Security\Core\User\PasswordUpgraderInterface;
+use App\Entity\Roles;
 
 /**
  * @extends ServiceEntityRepository<User>
@@ -40,28 +41,59 @@ class UserRepository extends ServiceEntityRepository implements PasswordUpgrader
         $this->getEntityManager()->flush();
     }
 
-//    /**
-//     * @return User[] Returns an array of User objects
-//     */
-//    public function findByExampleField($value): array
-//    {
-//        return $this->createQueryBuilder('u')
-//            ->andWhere('u.exampleField = :val')
-//            ->setParameter('val', $value)
-//            ->orderBy('u.id', 'ASC')
-//            ->setMaxResults(10)
-//            ->getQuery()
-//            ->getResult()
-//        ;
-//    }
+    public function alreadyExists(string $mail): bool
+    {
+        $user = $this->findOneBy(['email' => $mail]);
+        return $user !== null;
+    }
 
-//    public function findOneBySomeField($value): ?User
-//    {
-//        return $this->createQueryBuilder('u')
-//            ->andWhere('u.exampleField = :val')
-//            ->setParameter('val', $value)
-//            ->getQuery()
-//            ->getOneOrNullResult()
-//        ;
-//    }
+    public function findPage(int $page, int $limit): array
+    {
+        $offset = ($page - 1) * $limit;
+        return $this->findBy([], null, $limit, $offset);
+    }
+
+    public function findAllLike(string $name, string $surname)
+    {
+        $nameVal = "%$name%";
+        $surnameVal = "%$surname%";
+
+        return $this->createQueryBuilder('u')
+            ->orWhere('u.name LIKE :nameVal')
+            ->orWhere('u.surname LIKE :nameVal')
+            ->setParameter(':nameVal', $nameVal)
+
+            ->orWhere('u.surname LIKE :surnameVal')
+            ->orWhere('u.name LIKE :surnameVal')
+            ->setParameter('surnameVal', $surnameVal)
+
+            ->getQuery()
+            ->getResult();
+    }
+
+
+    //    /**
+    //     * @return User[] Returns an array of User objects
+    //     */
+    //    public function findByExampleField($value): array
+    //    {
+    //        return $this->createQueryBuilder('u')
+    //            ->andWhere('u.exampleField = :val')
+    //            ->setParameter('val', $value)
+    //            ->orderBy('u.id', 'ASC')
+    //            ->setMaxResults(10)
+    //            ->getQuery()
+    //            ->getResult()
+    //        ;
+    //    }
+
+    //    public function findOneBySomeField($value): ?User
+    //    {
+    //        return $this->createQueryBuilder('u')
+    //            ->andWhere('u.exampleField = :val')
+    //            ->setParameter('val', $value)
+    //            ->getQuery()
+    //            ->getOneOrNullResult()
+    //        ;
+    //    }
 }

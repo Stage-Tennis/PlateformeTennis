@@ -10,11 +10,12 @@ class LevelFixture extends Fixture
 {
     public function load(ObjectManager $manager): void
     {
-        $levels = ["Gris", "Violet", "Jaune", "Bleu", "Orange", "Vert", "Blanc", "Physique"];
+        $levels = ["Gris" => "#444554", "Violet" => "#6941c6", "Jaune" => "#ffff00", "Bleu" => "#0000ff", "Orange" => "#ff8500", "Vert" => "#00ff00", "Blanc" => "#dddddd", "Physique" => "#aaccff"];
 
-        foreach ($levels as $lname) {
+        foreach ($levels as $label => $color) {
             $level = new Level();
-            $level->setLabel($lname);
+            $level->setLabel($label);
+            $level->setColor($color);
             $manager->persist($level);
         }
 

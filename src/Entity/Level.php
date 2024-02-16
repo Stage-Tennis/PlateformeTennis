@@ -14,6 +14,7 @@ class Level
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column]
+    #[Groups(['basic_infos'])]
     private ?int $id = null;
 
     #[ORM\Column(length: 128)]
@@ -25,6 +26,10 @@ class Level
 
     #[ORM\ManyToMany(targetEntity: User::class, mappedBy: 'level')]
     private Collection $users;
+
+    #[ORM\Column(length: 7)]
+    #[Groups(['basic_infos'])]
+    private ?string $color = null;
 
     public function __construct()
     {
@@ -102,6 +107,18 @@ class Level
         if ($this->users->removeElement($user)) {
             $user->removeLevel($this);
         }
+
+        return $this;
+    }
+
+    public function getColor(): ?string
+    {
+        return $this->color;
+    }
+
+    public function setColor(string $color): static
+    {
+        $this->color = $color;
 
         return $this;
     }
