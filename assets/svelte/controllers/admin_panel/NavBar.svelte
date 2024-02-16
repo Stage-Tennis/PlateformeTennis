@@ -4,7 +4,6 @@
     const dispatch = createEventDispatcher();
 
     function panelChange(panel) {
-        console.log("Panel change: " + panel);
         dispatch("panelChange", {
             panel: panel,
         });
@@ -22,7 +21,7 @@
     >
     <button
         class="my-4 text-xl hover:text-orange-600 transition duration-300 ease-in-out self-start"
-        on:click={() => panelChange("staff")}>Staff</button
+        on:click={() => panelChange("levels")}>Niveaux</button
     >
     <button
         class="my-4 text-xl hover:text-orange-600 transition duration-300 ease-in-out self-start"
