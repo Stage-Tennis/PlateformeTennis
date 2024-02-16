@@ -1,25 +1,34 @@
 document.addEventListener("DOMContentLoaded", function () {
-  // Sélection des éléments du formulaire et des éléments pour afficher les messages d'erreur
   const licenseSerial = document.querySelector("input[name='license_serial']");
   const licenseSerialError = document.getElementById("licenseSerialError");
+
   const name = document.querySelector("input[name='name']");
   const nameError = document.getElementById("nameError");
+
   const surname = document.querySelector("input[name='surname']");
   const surnameError = document.getElementById("surnameError");
+
   const civility = document.querySelector("select[name='civility']");
   const civilityError = document.getElementById("civilityError");
+
   const birthdate = document.querySelector("input[name='birthdate']");
   const birthdateError = document.getElementById("birthdateError");
+
   const email = document.querySelector("input[name='email']");
   const emailError = document.getElementById("emailError");
+
   const phone = document.querySelector("input[name='phone']");
   const phoneError = document.getElementById("phoneError");
+
   const address = document.querySelector("input[name='address']");
   const addressError = document.getElementById("addressError");
+
   const zipcode = document.querySelector("input[name='zipcode']");
   const zipcodeError = document.getElementById("zipcodeError");
+
   const city = document.querySelector("input[name='city']");
   const cityError = document.getElementById("cityError");
+
   const startTennis = document.querySelector("input[name='startTennis']");
   const startTennisError = document.getElementById("startTennisError");
 
@@ -28,7 +37,6 @@ document.addEventListener("DOMContentLoaded", function () {
     startTennis = startTennis.slice(0, 4);
   }
 
-  // Fonctions de validation
   function validateField(field, validator, errorMessage, errorElement) {
     const isValid = validator(field.value);
     errorElement.textContent = isValid ? "" : errorMessage;
@@ -81,7 +89,6 @@ document.addEventListener("DOMContentLoaded", function () {
     );
   }
 
-  // Gestionnaires d'événements pour la validation
   licenseSerial.addEventListener("input", () =>
     validateField(
       licenseSerial,
@@ -171,7 +178,6 @@ document.addEventListener("DOMContentLoaded", function () {
     )
   );
 
-  // Fonction de validation globale du formulaire (appelée avant la soumission)
   function validateForm() {
     const fieldsAreValid = [
       validateField(
@@ -241,7 +247,5 @@ document.addEventListener("DOMContentLoaded", function () {
         startTennisError
       ),
     ].every((isValid) => isValid);
-
-    // Active ou désactive le bouton de soumission en fonction de la validité du formulaire
   }
 });
